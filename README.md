@@ -1,5 +1,4 @@
-# Aplicación móvil híbrida desarrollada con el
-# SDK Ionic basada en AngularJS y Capacitor.
+# Aplicación móvil híbrida desarrollada con el SDK Ionic basada en AngularJS y Capacitor.
 
 Esta apliacción tiene con objetivo poder vender productos a los usuarios registrados en la app.
 El vendedor podrá ver el soporte de pago por transferencia,
