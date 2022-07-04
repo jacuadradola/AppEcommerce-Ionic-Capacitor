@@ -1,0 +1,31 @@
+<ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar>
+        <ion-title class="c-primary size-22">Inventario</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">
+                <span class="material-icons size-32">highlight_off</span>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-searchbar animated showCancelButton="focus" placeholder="Buscar" (ionChange)="search($event)">
+        </ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <ion-list>
+        <ion-item lines="full" class="c-primary">
+            <ion-label>Id | Nombre</ion-label>
+            <ion-text class="ion-padding-end">Ventas | Actual</ion-text>
+        </ion-item>
+        <ion-item lines="none" *ngFor="let product of products | filtro: buscar: 'name' ">
+            <ion-label>
+                {{product.id}} | {{product.name}}
+            </ion-label>
+            <ion-text class="ion-padding-end">
+                {{product.buy}} | {{product.actual}}
+            </ion-text>
+        </ion-item>
+    </ion-list>
+</ion-content>

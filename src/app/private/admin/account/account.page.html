@@ -1,0 +1,39 @@
+<ion-header>
+    <ion-toolbar color="primary">
+        <ion-title class="white size-22">Cuentas</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="create()">
+                <span class="material-icons size-32 white">add</span>
+                <ion-text class="size-20 white">Nueva</ion-text>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-list>
+        <ion-item-sliding *ngFor="let account of accounts">
+            <ion-item lines="full">
+                <ion-label>
+                    <ion-text class="c-primary">Nombre: </ion-text>{{account.name_person}} <br>
+                    <ion-text class="c-primary">Cuenta: </ion-text>{{account.name}} <br>
+                    <ion-text class="c-primary">Cédula: </ion-text>{{account.cc}}
+                </ion-label>
+                <span class="material-icons size-32" *ngIf="account.active">done_all</span>
+            </ion-item>
+            <ion-item-options side="start">
+                <ion-item-option color="danger" (click)="delete(account.id)">
+                    <span class="material-icons white size-32">delete</span>
+                </ion-item-option>
+            </ion-item-options>
+
+            <ion-item-options side="end">
+                <ion-item-option (click)="updateActive(account.id)">
+                    <span class="material-icons white size-32">price_check</span>
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+
+</ion-content>

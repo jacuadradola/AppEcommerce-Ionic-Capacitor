@@ -1,0 +1,58 @@
+<app-menu (clickItem)="clickMenu($event)"></app-menu>
+<ion-app id="menucart">
+    <ion-header [translucent]="true" class="ion-no-border">
+        <ion-toolbar color="primary">
+            <ion-buttons slot="start">
+                <ion-menu-button menu="cartmenu" class="white"></ion-menu-button>
+            </ion-buttons>
+            <ion-title class="size-22 white">Carrito de compras</ion-title>
+            <ion-buttons slot="end">
+                <ion-button (click)="accountActive()">
+                    <span class="material-icons size-32 white">local_atm</span>
+                </ion-button>
+            </ion-buttons>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+        <div *ngIf="view && bill!=null && bill!=undefined">
+            <h1 class="ion-text-center size-20">Orden de servicio #{{bill.id}}</h1>
+            <ion-list>
+                <ion-item-sliding *ngFor="let order of bill.orders">
+
+                    <ion-item lines="none">
+                        <ion-label color="dark">
+                            <p class="size-18">
+                                <b class="c-primary">Producto: </b>{{order.option.product.name}}<br>
+                                <b class="c-primary">Opción: </b>{{order.option.name}}<br>
+                                <b class="c-primary">Cantidad: </b>{{order.quantity}}<br>
+                                <b class="c-primary">Costo: </b>${{order.price*order.quantity| moneda}} pesos
+                            </p>
+                        </ion-label>
+                    </ion-item>
+                    <ion-item-options side="end">
+                        <ion-item-option (click)="updateOrder(order)">
+                            <span class="material-icons size-32 white">tag</span>
+                        </ion-item-option>
+                        <ion-item-option color="primary" (click)="deleteOrder(order)" color="danger">
+                            <span class="material-icons size-32 white">delete</span>
+                        </ion-item-option>
+                    </ion-item-options>
+                </ion-item-sliding>
+            </ion-list>
+        </div>
+        <div *ngIf='bill==null || bill.total==0' class="center">
+            <ion-thumbnail class="logo-full">
+                <img src="/assets/cart.svg">
+            </ion-thumbnail>
+        </div>
+
+    </ion-content>
+    <ion-footer *ngIf="bill!=null" class="ion-no-border">
+        <ion-toolbar>
+            <ion-button (click)="buy()" expand="block" shape="round">
+                <ion-text class="white size-20">Comprar todo (${{bill.total | moneda}})</ion-text>
+            </ion-button>
+        </ion-toolbar>
+    </ion-footer>
+</ion-app>

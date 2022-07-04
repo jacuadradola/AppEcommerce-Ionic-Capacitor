@@ -1,0 +1,84 @@
+<ion-header translucent="true">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/login" class="size-22" text="Iniciar sesión"></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+    <ion-thumbnail class="image-full-2">
+        <img src="/assets/signup.svg">
+    </ion-thumbnail>
+    <form #formulario="ngForm" (ngSubmit)="send()">
+        <h1 class="size-22 c-primary">Datos de acceso</h1>
+
+        <ion-item>
+            <ion-label class="size-20">Correo electrónico:</ion-label>
+            <ion-input type="text" [(ngModel)]="data.email" name="email" placeholder="Ej: juan@mail.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label class="size-20">Contraseña:</ion-label>
+            <ion-input type="password" [(ngModel)]="data.password" name="password" placeholder="********" required>
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label class="size-20">Repetir contraseña:</ion-label>
+            <ion-input type="password" [(ngModel)]="password" name="repassword" placeholder="********" required>
+            </ion-input>
+        </ion-item>
+        <h1 class="size-22 c-primary">Información personal de recepción de compras</h1>
+        <ion-item>
+            <ion-label class="size-20">Identificación:</ion-label>
+            <ion-input type="text" [(ngModel)]="data.identification" name="identification" placeholder="Ej: 123456789" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label class="size-20">Nombre completo:</ion-label>
+            <ion-input type="text" [(ngModel)]="data.name" name="name" placeholder="Ej: Juan Peréz" required>
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label class="size-20">Teléfono celular:</ion-label>
+            <ion-input type="text" [(ngModel)]="data.telephone" name="telephone" placeholder="Ej: 3XXXXXXXXX" pattern="3[0-9]{9}" required>
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label class="size-20">Dirección:</ion-label>
+            <ion-input type="text" [(ngModel)]="data.direction" name="direction" placeholder="Ej: Calle 5 # 5 - 55" required>
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label class="size-20">Referencia de la dirección:</ion-label>
+            <ion-input type="text" [(ngModel)]="data.reference" name="reference" placeholder="Ej: El centro" required>
+            </ion-input>
+        </ion-item>
+
+
+        <ion-item>
+            <ion-label class="size-20">Departamento</ion-label>
+            <ion-select [(ngModel)]="departmentId" name="departmentId" placeholder="Seleccionar departamento ."
+                (ionChange)="changeDepartment($event)" required>
+                <ion-select-option *ngFor="let department of departments" class="size-20" [value]="department.id">{{department.name}}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label class="size-20">Ciudad</ion-label>
+            <ion-select [(ngModel)]="data.city_id" name="city_id" placeholder="Seleccionar ciudad ." [disabled]="cities.length == 0" required>
+                <ion-select-option *ngFor="let city of cities" class="size-20" [value]="city.id">{{city.name}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-button type="submit" color="primary" expand="block" shape="round" [disabled]="formulario.invalid">
+            <ion-text class="white size-22">Crear cuenta
+            </ion-text>
+        </ion-button>
+    </form>
+
+
+</ion-content>

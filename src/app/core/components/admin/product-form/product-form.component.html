@@ -1,0 +1,155 @@
+<ion-header class="ion-no-border" [translucent]="true">
+    <ion-toolbar>
+        <ion-title class="c-primary size-22">Producto</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">
+                <span class="material-icons size-32 c-primary"> highlight_off </span>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="start">
+            <ion-button (click)="photo()">
+                <span class="material-icons size-32 c-primary"> insert_photo </span>&nbsp;Imagen
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <ion-card>
+        <img *ngIf="imagen" [src]="imagen" alt="">
+        <form #formulario="ngForm" (ngSubmit)="send()">
+            <ion-item lines="none">
+                <ion-label class="size-20" color="primary">Activo </ion-label>
+                <ion-checkbox name="active" [(ngModel)]="data.active" required></ion-checkbox>
+            </ion-item>
+
+            <ion-item lines="none">
+                <ion-label class="size-20" color="primary">Umbral </ion-label>
+                <ion-checkbox name="umbral" [(ngModel)]="data.umbral_group" required></ion-checkbox>
+            </ion-item>
+
+            <ion-item lines="none">
+                <ion-label class="size-20" color="primary">Categoría </ion-label>
+                <ion-select [value]="data.category_id" name="category_id" [(ngModel)]="data.category_id"
+                    placeholder="Seleccione una categoria" required>
+                    <ion-select-option *ngFor="let category of categories" [value]="category.id">{{category.name}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item lines="none">
+                <ion-label class="size-20" color="primary">Proveedor </ion-label>
+                <ion-select [value]="data.provider_id" name="provider_id" [(ngModel)]="data.provider_id"
+                    placeholder="Seleccione un proveedor" required>
+                    <ion-select-option *ngFor="let provider of providers" [value]="provider.id">{{provider.name}}
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-label class="size-20" color="primary">ID &nbsp;</ion-label>
+                <ion-input type="text" name="id" [(ngModel)]="product_id" readonly="true">
+                </ion-input>
+            </ion-item>
+            <ion-item lines="none">
+                <ion-label class="size-20" color="primary">Nombre &nbsp;</ion-label>
+                <ion-input type="text" name="name" [(ngModel)]="data.name" placeholder="Ingrese un nombre" required>
+                </ion-input>
+            </ion-item>
+
+            <!-- <ion-item lines="none">
+                <ion-label class="size-20" color="primary">Descuento </ion-label>
+                <ion-input type="number" name="discount" [(ngModel)]="data.discount" placeholder="Ingrese un descuento" >
+                </ion-input>
+            </ion-item>
+ -->
+            <ion-item lines="none">
+                <ion-label class="size-20" color="primary">Descripción </ion-label>
+                <ion-textarea rows="6" type="text" name="description" [(ngModel)]="data.description"
+                    placeholder="Ingrese un descripción" required>
+                </ion-textarea>
+            </ion-item>
+
+            <ion-button type="submit" shape="round" expand="block" [disabled]="formulario.invalid">
+                <ion-text class="white size-22">
+                    Enviar
+                </ion-text>
+            </ion-button>
+        </form>
+    </ion-card>
+
+    <!-- agregar opción -->
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="product_id!=null">
+        <ion-fab-button (click)="optionForm()">
+            <span class="material-icons size-32 white">add</span>
+        </ion-fab-button>
+    </ion-fab>
+
+    <div *ngIf="product_id!=null">
+        <ion-card class="ion-text-center">
+            <h3 class="size-20 ion-padding-top">Opciones del producto</h3>
+            <div class="ion-padding">
+                <table>
+                    <tr class="c-primary size-20">
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;Nombre&nbsp;&nbsp;&nbsp;</th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;Precio&nbsp;&nbsp;&nbsp;</th>
+                        <th>&nbsp;&nbsp;&nbsp;&nbsp;Cantidad&nbsp;&nbsp;&nbsp;</th>
+                        <th>&nbsp;&nbsp;</th>
+                    </tr>
+                    <tr class="size-20" *ngFor="let option of options">
+                        <td>{{option.name}}</td>
+                        <td>${{option.price | moneda}}</td>
+                        <td>{{option.quantity}}</td>
+                        <td>
+                            <ion-buttons slot="end">
+                                <ion-button (click)="optionForm(option)">
+                                    <span class="material-icons size-20">create</span>
+                                </ion-button>
+                            </ion-buttons>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </ion-card>
+    </div>
+
+    <!-- Album -->
+    <div *ngIf="product_id!=null">
+        <ion-toolbar>
+            <h3 class="size-20 ion-text-center size-24">Galería del producto</h3>
+            <ion-buttons slot="start">
+                <ion-button (click)="addAlbum()">
+                    <span class="material-icons size-32">add_a_photo</span>
+                </ion-button>
+            </ion-buttons>
+        </ion-toolbar>
+        <ion-card class="ion-text-center" *ngIf="this.albums.length>0">
+
+            <div class="ion-padding">
+                <table>
+                    <tr class="c-primary size-16">
+                        <th></th>
+                        <th> </th>
+                    </tr>
+                    <tr *ngFor="let album of albums">
+                        <td><img [src]="album.image" alt=""></td>
+                        <td>
+                            <ion-buttons slot="end">
+                                <ion-button (click)="updateAlbum(album.id)">
+                                    <span class="material-icons size-20">create</span>
+                                </ion-button>
+                                <ion-button (click)="removeAlbum(album.id)">
+                                    <span class="material-icons size-20">delete_forever</span>
+                                </ion-button>
+                            </ion-buttons>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </ion-card>
+    </div>
+</ion-content>
+<ion-footer class="ion-no-border">
+    <ion-toolbar>
+
+    </ion-toolbar>
+</ion-footer>

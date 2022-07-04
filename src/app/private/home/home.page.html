@@ -1,0 +1,50 @@
+<ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar color="primary">
+        <ion-title class="white size-32">
+            <b>App name</b>
+        </ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="productCategory(null)">
+                <span class="material-icons size-30 white"> search </span>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-segment [value]="3" (ionChange)="segmentChanged($event)">
+            <ion-segment-button [value]="3" layout="icon-start">
+                <span class="material-icons size-28 c-primary"> view_headline </span>
+                <ion-label class="size-22 c-primary">Todos</ion-label>
+            </ion-segment-button>
+            <ion-segment-button [value]="2" layout="icon-start">
+                <span class="material-icons size-28 c-primary"> nightlight_round </span>
+                <ion-label class="size-22 c-primary">Exclusivos</ion-label>
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <!-- Categorías -->
+    <br>
+    <div class="pins">
+        <div class="pin" *ngFor="let category of categories | filtro: 'true' : 'exclusive' : segment">
+            <div (click)="productCategory(category.id)" class="ion-text-center">
+                <img [src]="category.image" class="borde-img">
+                <div class="borde-text-light">
+                    <div class="text-product">
+                        <ion-text color="primary">
+                            {{category.name}}
+                        </ion-text>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div *ngIf='categories.length==0' class="center">
+            <ion-thumbnail class="logo-full-2">
+                <img src="/assets/maintenance.svg">
+            </ion-thumbnail>
+        </div>
+    </div>
+
+</ion-content>

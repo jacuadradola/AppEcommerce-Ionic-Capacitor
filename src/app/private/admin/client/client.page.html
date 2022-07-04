@@ -1,0 +1,28 @@
+<ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar>
+        <ion-title class="size-22 c-primary">Clientes</ion-title>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-searchbar animated showCancelButton="focus" placeholder="Buscar" (ionChange)="search($event)">
+        </ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <ion-list>
+        <ion-item lines="full" class="c-primary">
+            <ion-label>Nombre completo / Identificación</ion-label>
+            <ion-text class="ion-padding-end">
+                Antiguo | Activo | Contraseña
+            </ion-text>
+        </ion-item>
+
+        <ion-item lines="none" *ngFor="let client of clients | filtro: searchText: 'name'">
+            <ion-label>{{client.name}} <ion-text class="c-primary">/</ion-text> {{client.identification}}</ion-label>
+            <ion-checkbox [(ngModel)]="client.old" (click)="changeOld(client)"></ion-checkbox> &nbsp;&nbsp;&nbsp;
+            <ion-checkbox [(ngModel)]="client.active" (click)="changeActive(client)"></ion-checkbox>&nbsp;&nbsp;&nbsp;
+            <ion-button color="tertiary" (click)="changePassword(client)">Cambiar</ion-button>&nbsp;&nbsp;&nbsp;
+        </ion-item>
+
+    </ion-list>
+</ion-content>

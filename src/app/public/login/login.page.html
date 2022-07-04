@@ -1,0 +1,53 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button routerLink="/tabs">                 
+                <span class="material-icons size-32"> storefront </span>&nbsp;
+                <ion-text class="size-22">Tienda</ion-text>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+
+    <ion-grid>
+        <ion-row class="ion-justify-content-center">
+            <ion-col class="ion-align-self-center">
+                <ion-thumbnail class="logo-full">
+                    <img src="/assets/login.svg" />
+                </ion-thumbnail>
+                <form #formulario="ngForm" (ngSubmit)="login()">
+                    <ion-item>
+                        <ion-label color="primary" position="floating" class="ion-text-center size-22">Correo electrónico
+                        </ion-label>
+                        <ion-input type="text" [(ngModel)]="user" name="user" required></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                        <ion-label color="primary" position="floating" class="ion-text-center size-22">Contraseña</ion-label>
+                        <ion-input [type]="typeInput" [(ngModel)]="pass" name="pass" min="5" required>
+                            <ion-button fill="none" type="button" item-end class="btn_eye_icon"
+                                (click)="togglePasswordMode()">
+                                <ion-icon [name]="iconpassword"></ion-icon>
+                            </ion-button>
+                        </ion-input>
+
+                    </ion-item>
+
+                    <ion-button type="submit" shape="round" expand="block"
+                        [disabled]="formulario.invalid">
+                        <ion-text class="white size-22">Acceder</ion-text>
+                    </ion-button>
+                </form>
+
+                <ion-row>
+                    <ion-col size="12">
+                        <ion-button routerLink="/sign-up" color="dark" shape="round" expand="block" class=" size-22">
+                            Crear cuenta
+                        </ion-button>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

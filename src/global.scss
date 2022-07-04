@@ -1,0 +1,375 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+/* Font size */
+
+.size-150 {
+  font-size: 150px !important;
+}
+.size-50 {
+  font-size: 50px !important;
+}
+.size-48 {
+  font-size: 48px !important;
+}
+.size-36 {
+  font-size: 36px !important;
+}
+.size-32 {
+  font-size: 32px !important;
+}
+.size-28 {
+  font-size: 28px !important;
+}
+.size-25 {
+  font-size: 25px !important;
+}
+.size-22 {
+  font-size: 22px !important;
+}
+.size-20 {
+  font-size: 20px !important;
+}
+.size-18 {
+  font-size: 18px !important;
+}
+.size-16 {
+  font-size: 16px !important;
+}
+.size-14 {
+  font-size: 14px !important;
+}
+.size-12 {
+  font-size: 12px !important;
+}
+.size-10 {
+  font-size: 10px !important;
+}
+.size-5 {
+  font-size: 5px !important;
+}
+/* Others */
+
+.tachado {
+  font-size: 15px !important;
+  text-decoration: line-through !important;
+  color: gray !important;
+}
+.descuento {
+  font-size: 18px !important;
+  color: red !important;
+}
+.center {
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.img {
+  width: 60px !important;
+  height: 60px !important;
+  margin: 0 auto !important;
+  padding: unset !important;
+}
+.image-full {
+  --size: 97%;
+  height: auto;
+  margin: auto;
+}
+.image-full-2 {
+  --size: 65%;
+  height: auto;
+  margin: auto;
+}
+.center-block {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+.center-img {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+/* Colors */
+.c-primary {
+  color: #f450a9ff;
+}
+.white {
+  color: #ffffff !important;
+}
+.dark {
+  color: #000052 !important;
+}
+
+.marco {
+  border: 1px solid #2c0080ff;
+}
+
+/* New */
+.borde-img {
+  border-radius: 12px 12px 0 0 !important;
+}
+.borde-img-full {
+  border-radius: 12px 12px 12px 12px !important;
+}
+.borde-text-light {
+  border-radius: 0 0 12px 12px !important;
+  background-color: #ffecf0ff;
+}
+.borde-text-dark {
+  border-radius: 0 0 12px 12px !important;
+  background-color: #383a3e;
+}
+.borde {
+  border-radius: 0 0 20px 20px !important;
+}
+
+.pin {
+  display: inline-block !important;
+  margin: 0 2px 2px !important;
+  padding: 5px !important;
+  filter: drop-shadow(5px 5px 20px rgba(0, 0, 0, 0.29));
+  //filter: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.tab-light {
+  --background: #fafafa;
+}
+.tab-dark {
+  --background: #171942;
+}
+.header-light {
+  --background: linear-gradient(
+    90deg,
+    #f450a9ff 0%,
+    #f450a9ff 35%,
+    #f450a9ff 100%
+  ) !important;
+  background: linear-gradient(
+    90deg,
+    #f450a9ff 0%,
+    #f450a9ff 35%,
+    #f450a9ff 100%
+  ) !important;
+  padding: 0 0px;
+}
+.header-dark {
+  --background: linear-gradient(
+    90deg,
+    #121212 0%,
+    #121212 35%,
+    #121212 100%
+  ) !important;
+  background: linear-gradient(
+    90deg,
+    #121212 0%,
+    #121212 35%,
+    #121212 100%
+  ) !important;
+  padding: 0 0px;
+}
+
+.text-dark {
+  color: #fafafa !important;
+}
+.text-light {
+  color: #2c0080 !important;
+}
+.bg-dark {
+  background-color: #2b2b2b !important;
+}
+.bg-dark-alt {
+  background-color: #2b2b2b !important;
+}
+.bg-light {
+  background-color: #92949c !important;
+}
+.bg-light-alt {
+  background-color: #fafafa !important;
+  border-style: solid;
+  border-color: grey;
+}
+.slide-small {
+  min-height: 200px !important;
+}
+.slide-medium {
+  min-height: 250px !important;
+}
+.slide-full {
+  min-height: 320px !important;
+}
+.bold-m {
+  font-weight: 900 !important;
+}
+.bold-full {
+  font-weight: 1100 !important;
+}
+
+.animation-img {
+  margin-top: 100px;
+  height: 280px;
+  -webkit-animation: fade-in-fwd 4.3s ease-in-out alternate backwards;
+  animation: fade-in-fwd 4.3s ease-in-out alternate backwards;
+}
+.no-margin {
+  margin-top: unset !important;
+}
+.animation-btn {
+  -webkit-animation: fade-in-fwd 4.3s ease-in-out alternate backwards;
+  animation: fade-in-fwd 4.3s ease-in-out alternate backwards;
+}
+.text-dark-alt {
+  color: #0b8d89 !important;
+}
+.text-light-alt {
+  color: #2c0080 !important;
+}
+.bg-item-dark {
+  --background: #2b2b2b !important;
+}
+.bg-item-light {
+  --background: #fafafa !important;
+}
+
+/* ----------------------------------------------
+   * Generated by Animista on 2020-11-25 7:14:49
+   * Licensed under FreeBSD License.
+   * See http://animista.net/license for more info. 
+   * w: http://animista.net, t: @cssanimista
+   * ---------------------------------------------- */
+
+/**
+   * ----------------------------------------
+   * animation fade-in-fwd
+   * ----------------------------------------
+   */
+@-webkit-keyframes fade-in-fwd {
+  0% {
+    -webkit-transform: translateZ(-80px);
+    transform: translateZ(-80px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+@keyframes fade-in-fwd {
+  0% {
+    -webkit-transform: translateZ(-80px);
+    transform: translateZ(-80px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+@media screen and (max-width: 674px) {
+  .pins {
+    column-count: 1 !important;
+  }
+  .text-product {
+    font-size: 14px !important;
+  }
+  .img-product-detail {
+    width: 30% !important;
+  }
+  .logo-full {
+    --size: 80px;
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 675px) and (max-width: 816px) {
+  .pins {
+    column-count: 4 !important;
+  }
+  .text-product {
+    font-size: 14px !important;
+  }
+  .logo-full {
+    --size: 120px;
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 817px) and (max-width: 1024px) {
+  .pins {
+    column-count: 6 !important;
+  }
+  .img-product-detail {
+    width: 30% !important;
+  }
+  .logo-full {
+    --size: 170px;
+    margin: auto;
+  }
+}
+
+@media screen and (min-width: 1025px) {
+  .pins {
+    column-count: 8 !important;
+  }
+  /* .image-full-2 {
+    --size: 50% !important;
+    height: auto;
+    margin: auto;
+  } */
+  .logo-full {
+    --size: 210px;
+    margin: auto;
+  }
+  .logo-full-2 {
+    --size: 240px;
+    margin: auto;
+  }
+}
+
+.btn_eye_icon {
+  position: absolute;
+  right: 0;
+  bottom: 4px;
+  background: transparent;
+  ion-icon {
+    font-size: 22px;
+    color: #757575;
+  }
+}
+
+.btn_eye_icon:focus {
+  outline: none !important;
+}

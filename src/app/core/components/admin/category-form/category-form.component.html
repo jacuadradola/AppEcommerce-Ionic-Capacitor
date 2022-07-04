@@ -1,0 +1,81 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-title class="c-primary size-22">Categoría</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">
+                <span class="material-icons size-32 c-primary"> highlight_off </span>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="start">
+            <ion-button (click)="photo()">
+                <span class="material-icons size-32 c-primary"> insert_photo </span>&nbsp;Imagen
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <img *ngIf="imagen" [src]="imagen" alt="">
+    <form #formulario="ngForm" (ngSubmit)="send()">
+
+        <ion-item lines="none">
+            <ion-label color="primary">Exclusivo</ion-label>
+            <ion-checkbox name="exclusive" [(ngModel)]="data.exclusive" required></ion-checkbox>
+        </ion-item>
+
+        <ion-item lines="none">
+            <ion-label color="primary">Nombre</ion-label>
+            <ion-input type="text" name="name" [(ngModel)]="data.name" placeholder="Escribe el nombre" required>
+            </ion-input>
+        </ion-item>
+
+        <!-- <ion-item lines="none">
+            <ion-label color="primary">Umbral</ion-label>
+            <ion-input type="number" name="umbral" [(ngModel)]="data.umbral_group" placeholder="Escriba un umbral" required>
+            </ion-input>
+        </ion-item> -->
+
+        <ion-button type="submit" expand="block" shape="round" [disabled]="formulario.invalid" class="ion-padding-horizontal">
+            <ion-text class="white size-22">
+                Enviar
+            </ion-text>
+        </ion-button>
+    </form>
+
+    <!-- agregar opción -->
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="category_id!=null">
+        <ion-fab-button (click)="umbralForm()">
+            <span class="material-icons size-32 white">add</span>
+        </ion-fab-button>
+    </ion-fab>
+
+    <div *ngIf="category_id!=null">
+        <ion-card class="ion-text-center">
+            <h3 class="size-20 ion-padding-top">Umbrales de categoría</h3>
+            <div class="ion-padding">
+                <table>
+                    <tr class="c-primary size-16">
+                        <th>Id</th>
+                        <th>&nbsp;Mínimo&nbsp;</th>
+                        <th>Máximo&nbsp;</th>
+                        <th> </th>
+                    </tr>
+                    <tr *ngFor="let u of umbral">
+                        <td class="c-primary">{{u.id}}</td>
+                        <td>{{u.value_min}}</td>
+                        <td>{{u.value_max}}</td>
+                        <td>
+                            <ion-buttons slot="end">
+                                <ion-button (click)="umbralForm(u)">
+                                    <span class="material-icons size-20">create</span>
+                                </ion-button>
+                            </ion-buttons>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </ion-card>
+    </div>
+
+
+</ion-content>

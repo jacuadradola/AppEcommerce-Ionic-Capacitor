@@ -1,0 +1,28 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar color="primary">
+        <ion-title class="white size-22">Productos</ion-title>
+        <ion-buttons slot="start">
+            <ion-button (click)="closeModal()">
+                <span class="material-icons size-32 white"> arrow_back </span>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-searchbar animated showCancelButton="focus" placeholder="Buscar" (ionChange)="search($event)">
+        </ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item *ngFor="let product of products | filtro: buscar: 'name' " (click)="getProduct(product.id)">
+            <ion-avatar slot="start">
+                <img [src]="product.image">
+            </ion-avatar>
+            <ion-label>
+                <h3 class="size-20">{{product.name}}</h3>
+                <p class="size-18">{{product.description}}</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content>

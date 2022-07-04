@@ -1,0 +1,69 @@
+<ion-header [translucent]="true" class="ion-no-border">
+    <ion-toolbar>
+        <ion-title class="c-primary size-32">
+            <b>App name</b>
+        </ion-title>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-searchbar animated showCancelButton="focus" placeholder="Buscar" (ionChange)="search($event)">
+        </ion-searchbar>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-segment value="product" (ionChange)="segmentChanged($event)">
+            <ion-segment-button value="product" layout="icon-start">
+                <ion-label class="size-22 c-primary">Productos</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="category" layout="icon-start">
+                <ion-label class="size-22 c-primary">Categorías</ion-label>
+            </ion-segment-button>
+            <!-- <ion-segment-button value="provider" layout="icon-start">
+                <ion-label class="size-22 c-primary">Proveedores</ion-label>
+            </ion-segment-button> -->
+        </ion-segment>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <!-- Botón flotante -->
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button>
+            <span class="material-icons size-32 white">expand_less</span>
+        </ion-fab-button>
+        <ion-fab-list side="top">
+            <ion-fab-button (click)="actionAdd()" routerDirection="forward" data-desc="Agregar">
+                <span class="material-icons size-32 c-primary">add_shopping_cart</span>
+            </ion-fab-button>
+            <ion-fab-button (click)="deleteOrder()" routerDirection="forward" data-desc="Limpiar todos los carritos">
+                <span class="material-icons size-32 c-primary">remove_shopping_cart</span>
+            </ion-fab-button>
+            <ion-fab-button (click)="modeStore()" routerDirection="forward" data-desc="En mantenimiento">
+                <span class="material-icons size-32 c-primary">engineering</span>
+            </ion-fab-button>
+            <ion-fab-button (click)="logOut()" routerDirection="forward" data-desc="Cerrar sesión">
+                <span class="material-icons size-32 c-primary">door_front</span>
+            </ion-fab-button>
+        </ion-fab-list>
+    </ion-fab>
+    <!-- Botón flotante -->
+    <!-- Productos -->
+    <ion-list *ngIf="segment=='product'">
+        <ion-item lines="none" (click)="productForm(product)" *ngFor="let product of products | filtro: searchText: 'name'">
+            <ion-label>Id: <ion-text class="c-primary">{{product.id}}</ion-text> - <ion-text class="c-primary"></ion-text>{{product.name}}</ion-label>
+        </ion-item>
+    </ion-list>
+
+    <!-- Proveedores -->
+    <ion-list *ngIf="segment=='provider'">
+        <ion-item lines="none" (click)="providerForm(provider)" *ngFor="let provider of providers  | filtro: searchText: 'name'">
+            <ion-label>{{provider.name}}</ion-label>
+        </ion-item>
+    </ion-list>
+
+    <!-- Categorías -->
+    <ion-list *ngIf="segment=='category'">
+        <ion-item lines="none" (click)="categoryForm(category)" *ngFor="let category of categories | filtro: searchText: 'name'">
+            <ion-label>{{category.name}}</ion-label>
+        </ion-item>
+    </ion-list>
+
+</ion-content>

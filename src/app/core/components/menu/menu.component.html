@@ -1,0 +1,25 @@
+<ion-menu side="start" menuId="cartmenu" contentId="menucart">
+
+    <ion-header>
+        <ion-toolbar translucent>
+            <ion-title class="c-primary size-22">Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <ion-menu-toggle>
+                <ion-item detail (click)="clickMenu('record')">
+                    <span class="material-icons size-32 c-primary"> history </span>&nbsp;Historial de compras
+                </ion-item>
+
+                <ion-item detail (click)="clickMenu('favorite')">
+                    <span class="material-icons size-32 c-primary"> favorite </span>&nbsp;Favoritos
+                </ion-item>
+
+                <ion-item detail (click)="clickMenu('active')">
+                    <span class="material-icons size-32 c-primary"> receipt_long </span>&nbsp;Facturas activas
+                </ion-item>
+            </ion-menu-toggle>
+        </ion-list>
+    </ion-content>
+</ion-menu>

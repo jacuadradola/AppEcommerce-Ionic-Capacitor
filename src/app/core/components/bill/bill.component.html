@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">
+                <span class="material-icons size-32"> highlight_off </span>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center">
+    <br>
+    <ion-item lines="none" class="ion-padding-horizontal size-20">
+        &nbsp; &nbsp;
+        <ion-text color="primary">Cantidad:</ion-text>&nbsp; &nbsp;
+        <ion-select [value]="1" [(ngModel)]="data.quantity" (ionChange)="changeQuantity($event)" placeholder="Seleccione una cantidad">
+            <ion-select-option *ngFor="let quantity of quantities" [value]="quantity">{{quantity}}</ion-select-option>
+        </ion-select>
+    </ion-item>
+    <br>
+    <ion-item lines="none" class="ion-padding-horizontal size-20">
+        &nbsp; &nbsp;
+        <ion-text color="primary">Descripción(Opcional):</ion-text>&nbsp; &nbsp;
+        <ion-textarea [(ngModel)]="data.description" placeholder="Escribe una descripción"></ion-textarea>
+    </ion-item>
+    <br>
+    <ion-text color="secondary" class="size-20">
+        Disponibilidad en bodega: {{option.quantity}}
+    </ion-text>
+    <br>
+    <!-- <ion-text color="secondary"  class="size-20">
+        precio: {{data.price}}
+    </ion-text>
+    <br> -->
+    <ion-button (click)="send()" shape="round" size="small" class="size-22">
+        <ion-text class="white">Agregar al carrito</ion-text>        
+    </ion-button>
+</ion-content>

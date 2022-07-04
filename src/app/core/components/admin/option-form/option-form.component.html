@@ -1,0 +1,106 @@
+<ion-header class="ion-no-border" [translucent]="true">
+    <ion-toolbar>
+        <ion-title class="size-22 c-primary">Opción</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">
+                <span class="material-icons size-32 c-primary"> highlight_off </span>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <form #formulario="ngForm" (ngSubmit)="send()">
+
+        <ion-item lines="none">
+            <ion-label color="primary">Activo </ion-label>
+            <ion-checkbox name="active" [(ngModel)]="data.active" required></ion-checkbox>
+        </ion-item>
+
+        <ion-item lines="none">
+            <ion-label color="primary">Nombre&nbsp;</ion-label>
+            <ion-input type="text" name="name" [(ngModel)]="data.name" placeholder="Escribe un nombre" required>
+            </ion-input>
+        </ion-item>
+
+
+
+        <ion-item lines="none">
+            <ion-label color="primary">Cantidad&nbsp;</ion-label>
+            <ion-input type="number" name="quantity" [(ngModel)]="data.quantity" placeholder="Escribe una cantidad"
+                required></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+            <ion-label color="primary">Precio&nbsp;</ion-label>
+            <ion-input type="number" name="price" [(ngModel)]="data.price" placeholder="Escribe un precio" required>
+            </ion-input>
+        </ion-item>
+
+        <!--  <ion-item lines="none">
+            <ion-label color="primary">Umbral&nbsp;</ion-label>
+            <ion-input type="number" name="umbral" [(ngModel)]="data.minimum" placeholder="Escribe un umbral" ></ion-input>
+        </ion-item> -->
+
+        <!-- <ion-item lines="none" *ngIf="data.minimum!=null">
+            <ion-label color="primary">Precio superior umbral&nbsp;</ion-label>
+            <ion-input type="number" name="price_max" [(ngModel)]="data.price_max" placeholder="Escribe un precio" ></ion-input>
+        </ion-item> -->
+
+        <ion-item lines="none">
+            <ion-label color="primary">Descripción&nbsp;</ion-label>
+            <ion-textarea rows="6" type="text" name="description" [(ngModel)]="data.description"
+                placeholder="Escribe una descripción" required></ion-textarea>
+        </ion-item>
+
+        <ion-button type="submit" shape="round" color="primary" expand="block" [disabled]="formulario.invalid">
+            <ion-text class="white size-20">
+                Enviar
+            </ion-text>
+        </ion-button>
+    </form>
+
+    <div *ngIf="option_id!=null">
+        <ion-card class="ion-text-center">
+            <h3 class="size-20 ion-padding-top">Precios de umbrales</h3>
+            <ion-item>
+                <ion-label>Selecciona</ion-label>
+                <ion-select [(ngModel)]="umbral_id" placeholder="Selecciona una opción">
+                    <ion-select-option *ngFor="let u of umbrals" [value]="u.id">Id:{{u.id}} - {{u.value_min}} al
+                        {{u.value_max}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-button (click)="umbralForm()" expand="block" shape="round">
+                <ion-text class="white size-20">Asignar</ion-text>
+            </ion-button>
+            <div class="ion-padding">
+                <table>
+                    <tr class="c-primary size-16">
+                        <th>Id</th>
+                        <th>&nbsp;Precio&nbsp;</th>
+                        <th> </th>
+                        <th> </th>
+                    </tr>
+                    <tr *ngFor="let u of umbralOptions">
+                        <td>{{u.umbral_id}}</td>
+                        <td>{{u.price |moneda}}</td>
+                        <td>
+                            <ion-buttons slot="end">
+                                <ion-button (click)="umbralForm(u)">
+                                    <span class="material-icons size-20">create</span>
+                                </ion-button>
+                            </ion-buttons>
+                        </td>
+                        <td>
+                            <ion-buttons slot="end">
+                                <ion-button (click)="deleteOptionUmbral(u.id)">
+                                    <span class="material-icons size-20">delete</span>
+                                </ion-button>
+                            </ion-buttons>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </ion-card>
+    </div>
+</ion-content>

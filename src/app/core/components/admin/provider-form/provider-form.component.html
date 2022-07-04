@@ -1,0 +1,41 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-title class="c-primary size-22">Proveedores</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">
+                <span class="material-icons size-32 c-primary"> highlight_off </span>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form #formulario="ngForm" (ngSubmit)="send()">
+
+        <ion-item lines="none">
+            <ion-label color="primary">Nit</ion-label>
+            <ion-input type="text" name="nit" [(ngModel)]="data.nit" placeholder="Escribe el número de identificación" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+            <ion-label color="primary">Nombre</ion-label>
+            <ion-input type="text" name="name" [(ngModel)]="data.name" placeholder="Escribe el nombre" required>
+            </ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+            <ion-label color="primary">Descripción</ion-label>
+            <ion-textarea type="text" rows="6" name="description" [(ngModel)]="data.description"
+                placeholder="Escribe la descripción" required></ion-textarea>
+        </ion-item>
+
+        <ion-button type="submit" color="primary" shape="round" expand="block" [disabled]="formulario.invalid"
+            class="ion-padding-horizontal">
+            <ion-text class="white size-22">
+                Enviar
+            </ion-text>
+        </ion-button>
+    </form>
+
+
+</ion-content>

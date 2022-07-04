@@ -1,0 +1,44 @@
+<ion-header class="ion-no-border" [translucent]="true">
+    <ion-toolbar>
+        <ion-title class="size-22 c-primary">Crear</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">
+                <span class="material-icons size-32 c-primary"> highlight_off </span>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <form #formulario="ngForm" (ngSubmit)="send()">
+
+        <ion-item lines="none">
+            <ion-label color="primary">Número de cuenta</ion-label>
+            <ion-input type="text" name="name_person" [(ngModel)]="data.name_person" placeholder="Escribe un nombre" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+            <ion-label color="primary">Cedula&nbsp;</ion-label>
+            <ion-input type="text" name="cc" [(ngModel)]="data.cc" placeholder="Escribe un numero de cedula" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+            <ion-label color="primary">Numero de cuenta&nbsp;</ion-label>
+            <ion-input type="text" name="name" [(ngModel)]="data.name" placeholder="Escribe un numero de cuenta" required></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+            <ion-label color="primary">Tipo de cuenta </ion-label>
+            <ion-select name="type" [(ngModel)]="data.type_account_id" placeholder="Seleccione un tipo de cuenta" required>
+                <ion-select-option *ngFor="let type of typeAccounts" [value]="type.id">{{type.name}}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-button type="submit" shape="round" color="primary" expand="block" [disabled]="formulario.invalid">
+            <ion-text class="white size-20">
+                Enviar
+            </ion-text>
+        </ion-button>
+    </form>
+</ion-content>

@@ -1,0 +1,21 @@
+<ion-menu side="start" menuId="billMenuAdmin" contentId="billMenuAdmin">
+
+    <ion-header>
+        <ion-toolbar translucent>
+            <ion-title>Menu</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content>
+        <ion-list>
+            <ion-menu-toggle>
+                <ion-item detail (click)="clickMenu1('inventory')">
+                    <span class="material-icons size-32 c-primary">storage</span>&nbsp;Inventario
+                </ion-item>
+
+                <ion-item detail (click)="clickMenu1('finalized')">
+                    <span class="material-icons size-32 c-primary">where_to_vote</span>&nbsp;Finalizados
+                </ion-item>
+            </ion-menu-toggle>
+        </ion-list>
+    </ion-content>
+</ion-menu>

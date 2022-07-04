@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title class="size-22">Historial de compras</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">
+                <span class="material-icons size-32"> highlight_off </span>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-item *ngFor="let bill of bills" (click)="detail(bill.id)" lines="full">
+            <h1 class="ion-text-center size-18">Orden de servicio #{{bill.id}}</h1>
+        </ion-item>
+    </ion-list>
+    <div *ngIf="bills.length==0" class="center">
+        <ion-thumbnail class="image-full-2">
+            <img src="/assets/record.svg">
+        </ion-thumbnail>
+    </div>
+</ion-content>

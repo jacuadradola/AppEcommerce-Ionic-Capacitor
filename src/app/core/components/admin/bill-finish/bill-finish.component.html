@@ -1,0 +1,32 @@
+<!-- 
+<ion-content fullscreen>
+    <ion-list>
+        <ion-item lines="none" *ngFor="let bill of bills">
+            <ion-label>Servicio #{{bill.id}} &nbsp; | &nbsp; ${{bill.total | moneda}} | &nbsp;
+                {{bill.direction.client.name}}</ion-label>
+        </ion-item>
+    </ion-list>
+</ion-content> -->
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title class="c-primary size-22">Finalizados</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">
+                <span class="material-icons size-32"> highlight_off </span>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <ion-list>
+        <ion-item *ngFor="let bill of bills" (click)="detail(bill.id)" lines="full">
+            <h1 class="ion-text-center size-18">Orden de servicio #{{bill.id}}</h1>
+        </ion-item>
+    </ion-list>
+    <div *ngIf="bills.length==0" class="center">
+        <ion-thumbnail class="image-full-2">
+            <img src="/assets/record.svg">
+        </ion-thumbnail>
+    </div>
+</ion-content>

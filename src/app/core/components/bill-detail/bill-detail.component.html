@@ -1,0 +1,108 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-title class="size-22 c-primary">Servicio # {{bill.id}}</ion-title>
+        <ion-buttons slot="start">
+            <ion-button (click)="closeModal()">
+                <span class="material-icons size-32"> picture_as_pdf </span>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="closeModal()">
+                <span class="material-icons size-32"> highlight_off </span>
+            </ion-button>
+        </ion-buttons>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div *ngIf="view">
+        <ion-card class="ion-text-left">
+            <div class="ion-padding">
+                <ion-label>
+                    <p class="size-20 text-dark-alt">
+                        <b class="c-primary">Cliente: </b>{{bill.direction.client.name}}<br>
+                        <b class="c-primary">Identificación: </b>{{bill.direction.client.identification}}<br>
+                        <b class="c-primary">Celular: </b>{{bill.direction.client.telephone}}<br>
+                        <b class="c-primary">Departamento: </b>{{bill.direction.city.department.name}}<br>
+                        <b class="c-primary">Ciudad: </b>{{bill.direction.city.name}}<br>
+                        <b class="c-primary">Dirección: </b>{{bill.direction.name}}, {{bill.direction.reference}}<br>
+                        <b *ngIf="bill.status_id==1" class="c-primary">Estado:
+                            <ion-text class="text-dark-alt">Carrito</ion-text>
+                        </b>
+                        <b *ngIf="bill.status_id==2" class="c-primary">Estado:
+                            <ion-text class="text-dark-alt">Finalizado</ion-text>
+                        </b>
+                        <b *ngIf="bill.status_id==3" class="c-primary">Estado:
+                            <ion-text class="text-dark-alt">En curso</ion-text>
+                        </b>
+                        <b *ngIf="bill.status_id==4" class="c-primary">Estado: Enviado
+                            <ion-text class="text-dark-alt">En curso</ion-text>
+                        </b>
+                        <b *ngIf="bill.status_id==5" class="c-primary">Estado:
+                            <ion-text class="text-dark-alt">Cancelado</ion-text>
+                        </b>
+                    </p>
+                </ion-label>
+            </div>
+
+            <div *ngIf="bill.total!=0">
+
+                <img *ngIf="bill.shipping_support" [src]="bill.shipping_support" alt="">
+                <img *ngIf="bill.payment_support" [src]="bill.payment_support" alt="">
+                <div class="ion-text-left ion-padding-horizontal">
+                    <div class="ion-padding">
+                        <ion-label *ngFor="let order of bill.orders" color="dark">
+                            <p class="size-18">
+                                <b class="c-primary">ID: </b>{{order.option.product.id}}<br>
+                                <b class="c-primary">Nombre: </b>{{order.option.product.name}}<br>
+                                <b class="c-primary">Opción: </b>{{order.option.name}}<br>
+                                <b class="c-primary">Cantidad: </b>{{order.quantity}}<br>
+                                <b class="c-primary">Precio: </b>$ {{order.price | moneda}}<br>
+                            </p>
+                            <br>
+                        </ion-label>
+
+                    </div>
+                </div>
+                <div class="ion-text-center">
+                    <h2 class="c-primary size-20">Total:
+                        <ion-text class="dark">
+                            $ {{bill.total | moneda}} pesos
+                        </ion-text>
+                    </h2>
+                </div>
+                <ion-button *ngIf="!admin && bill.status_id==3" (click)="sendSupportPayment()" expand="block"
+                    fill="clear" shape="round">
+                    Enviar soporte de pago
+                </ion-button>
+
+            </div>
+        </ion-card>
+    </div>
+</ion-content>
+<ion-footer class="ion-no-border" *ngIf="bill.total!=0">
+    <ion-toolbar *ngIf="admin && bill.status_id!=2">
+        <ion-buttons slot="start">
+            <ion-button (click)="optionAdmin()" class="ion-padding-horizontal">
+                <span class="material-icons size-32 c-primary"> linear_scale </span>&nbsp;
+                <ion-text class="size-22">Cambiar de estado</ion-text>
+            </ion-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="optionAdmin()" class="ion-padding-horizontal">
+                <span class="material-icons size-32 c-primary"> restore </span>&nbsp;
+                <ion-text class="size-22">Restaurar productos</ion-text>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <ion-toolbar *ngIf="!admin">
+        <ion-buttons slot="end">
+            <ion-button (click)="update(2)" expand="block" shape="round" *ngIf="!admin && bill.status_id == 4"
+                class="ion-padding-horizontal">
+                <span class="material-icons size-32 c-primary"> done_all </span>&nbsp;
+                <ion-text class="size-22">Cambiar a entregado</ion-text>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-footer>

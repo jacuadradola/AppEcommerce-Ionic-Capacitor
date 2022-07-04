@@ -1,0 +1,32 @@
+<app-menu-bill (clickItem)="clickMenuAction($event)"></app-menu-bill>
+<ion-app id="billMenuAdmin">
+    <ion-header [translucent]="true">
+        <ion-toolbar>
+            <ion-buttons slot="start">
+                <ion-menu-button menu="billMenuAdmin"></ion-menu-button>
+            </ion-buttons>
+            <ion-title class="size-22 c-primary">Facturas</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-content fullscreen>
+        <div *ngIf="bills.length">
+            <ion-list>
+                <ion-item lines="none" *ngFor="let bill of bills">
+                    <ion-label [class]="'size-20'+(bill.hoursUpdate >=12 && bill.status_id==3 ? ' color-item': '')" (click)="detail(bill.id)"># {{bill.id}} &nbsp; | &nbsp; {{bill.direction.client.name}}
+                    </ion-label>
+                    <ion-buttons *ngIf="bill.status_id!=1" slot="end">
+                        <ion-button (click)="options(bill)">
+                            <span class="material-icons size-32">linear_scale</span>
+                        </ion-button>
+                    </ion-buttons>
+                </ion-item>
+            </ion-list>
+        </div>
+        <div *ngIf="!bills.length" class="center">
+            <ion-thumbnail class="logo-full">
+                <img src="/assets/bill.svg">
+            </ion-thumbnail>
+        </div>
+    </ion-content>
+</ion-app>
